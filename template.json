@@ -3,7 +3,7 @@
     "input_folder": {
       "title": "FASTQ file location, expects an s3:// location and files named *.{1,2}.fastq.gz",
       "type": "string"
-    },
+    }
   },
   "required": [
     "input_folder"
