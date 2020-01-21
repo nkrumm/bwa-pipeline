@@ -4,6 +4,15 @@
       "title": "FASTQ file location, expects an s3:// location and files named *.{1,2}.fastq.gz",
       "type": "string"
     },
+    "do_read_trim": {
+      "default": "Yes",
+      "title": "Trim Reads?",
+      "type": "string",
+        "enum": [
+          "true",
+          "false"
+        ]
+    }
   },
   "required": [
     "input_folder"

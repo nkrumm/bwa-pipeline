@@ -12,6 +12,9 @@ process trim_reads {
           file("*.trimmed.1.fastq.gz"), 
           file("*.trimmed.2.fastq.gz") into trimmed_pair_ch
 
+    when:
+      params.do_read_trim == "true"
+
     cpus 2
     memory 2.GB
     script:
@@ -30,8 +33,12 @@ process trim_reads {
     """
 }
 
-trimmed_pair_ch.into { fastqc_ch; bwa_ch }
 
+if (params.do_read_trim == "true"){
+  trimmed_pair_ch.into {fastqc_ch; bwa_ch}
+} else {
+  fastq_pair_ch.into {fastqc_ch; bwa_ch}
+}
 
 process fastqc {
     container 'quay.io/biocontainers/fastqc:0.11.8--1'
